@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Email Classifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📧 Email Classifier</h1>
+            <p>AI-powered categorization with explanations</p>
+        </header>
+
+        <main>
+            <div class="input-section card">
+                <textarea id="emailInput" placeholder="Paste your email content here..." spellcheck="false"></textarea>
+                <div class="button-group">
+                    <button id="classifyBtn" class="primary-btn">Analyze Email</button>
+                    <button id="clearBtn" class="secondary-btn">Clear</button>
+                </div>
+            </div>
+
+            <div id="resultsSection" class="results-section hidden">
+                <div class="card result-card">
+                    <div class="result-header">
+                        <span class="label-title">Category</span>
+                        <span id="categoryBadge" class="badge">--</span>
+                    </div>
+                    
+                    <div class="confidence-wrapper">
+                        <div class="confidence-info">
+                            <span>Confidence Score</span>
+                            <span id="confidenceValue">0%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div id="confidenceBar" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h3>🤖 AI Explanation</h3>
+                        <p id="explanationText">Analysis pending...</p>
+                    </div>
+
+                    <div class="feedback-section">
+                        <p>Was this classification correct?</p>
+                        <div class="feedback-buttons">
+                            <button class="feedback-btn" data-type="correct">✅ Yes</button>
+                            <button class="feedback-btn" data-type="incorrect">❌ No</button>
+                        </div>
+                        <div id="correctionArea" class="correction-area hidden">
+                            <select id="correctionSelect">
+                                <option value="work">Work</option>
+                                <option value="personal">Personal</option>
+                                <option value="spam">Spam</option>
+                            </select>
+                            <button id="submitFeedbackBtn">Submit Correction</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <div id="toast" class="toast hidden">Feedback saved!</div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
