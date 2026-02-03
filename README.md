@@ -24,7 +24,7 @@ An AI-powered email classification system that categorizes emails into **Work**,
 |-----------|------------|-------------|
 | **Backend** | API | FastAPI |
 | **NLP** | Model | HuggingFace Transformers (Zero-shot) |
-| **LLM** | Explainer | OpenAI GPT API / Groq |
+| **LLM** | Explainer | OpenAI GPT / Google Gemini |
 | **Language** | Runtime | Python |
 | **Data** | Storage | JSON (Feedback storage) |
 
@@ -66,10 +66,19 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
 ```
 
-### 4. Set OpenAI API Key
-Export your API key as an environment variable:
+### 4. Configure LLM Provider (OpenAI / Gemini)
+You can switch between OpenAI and Google Gemini by setting the `LLM_PROVIDER` environment variable.
+
+#### Option A: OpenAI (Default)
 ```bash
-export OPENAI_API_KEY="your_api_key_here"
+export OPENAI_API_KEY="your_openai_key"
+export LLM_PROVIDER="openai"
+```
+
+#### Option B: Google Gemini
+```bash
+export GEMINI_API_KEY="your_gemini_key"
+export LLM_PROVIDER="gemini"
 ```
 
 ## ▶️ Running the Application

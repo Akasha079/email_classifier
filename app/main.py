@@ -17,7 +17,7 @@ async def read_index():
 @app.post("/classify", response_model=EmailResponse)
 def classify_email_api(request: EmailRequest):
     label, confidence = classify_email(request.text)
-    explanation = generate_explanation(request.text, label)
+    explanation = generate_explanation(request.text, label, request.llm_provider)
 
     return {
         "category": label,

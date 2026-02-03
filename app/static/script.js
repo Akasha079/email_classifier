@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitFeedbackBtn = document.getElementById('submitFeedbackBtn');
     const correctionSelect = document.getElementById('correctionSelect');
     const toast = document.getElementById('toast');
+    const llmProviderObj = document.getElementById('llmProvider');
 
     // State
     let currentPrediction = null;
@@ -40,7 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/classify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text })
+                body: JSON.stringify({
+                    text: text,
+                    llm_provider: llmProviderObj.value
+                })
             });
 
             if (!response.ok) throw new Error('API Error');

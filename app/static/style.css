@@ -54,6 +54,24 @@ header h1 {
 header p {
     color: var(--text-secondary);
     font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.model-selector select {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    cursor: pointer;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.model-selector select:hover {
+    border-color: var(--accent-color);
 }
 
 .card {
@@ -131,8 +149,15 @@ button {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .result-header {
@@ -156,9 +181,20 @@ button {
     text-transform: capitalize;
 }
 
-.badge.work { background-color: rgba(99, 102, 241, 0.2); color: #818cf8; }
-.badge.personal { background-color: rgba(16, 185, 129, 0.2); color: #34d399; }
-.badge.spam { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+.badge.work {
+    background-color: rgba(99, 102, 241, 0.2);
+    color: #818cf8;
+}
+
+.badge.personal {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.badge.spam {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
 
 .confidence-wrapper {
     margin-bottom: 2rem;
@@ -261,7 +297,7 @@ button {
     color: #fff;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     font-weight: 500;
     z-index: 100;
 }

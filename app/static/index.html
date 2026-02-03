@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>📧 Email Classifier</h1>
             <p>AI-powered categorization with explanations</p>
+            <div class="model-selector">
+                <select id="llmProvider">
+                    <option value="openai">OpenAI GPT-4o Mini</option>
+                    <option value="gemini">Google Gemini Flash</option>
+                </select>
+            </div>
         </header>
 
         <main>
@@ -31,7 +39,7 @@
                         <span class="label-title">Category</span>
                         <span id="categoryBadge" class="badge">--</span>
                     </div>
-                    
+
                     <div class="confidence-wrapper">
                         <div class="confidence-info">
                             <span>Confidence Score</span>
@@ -65,9 +73,10 @@
                 </div>
             </div>
         </main>
-        
+
         <div id="toast" class="toast hidden">Feedback saved!</div>
     </div>
     <script src="/static/script.js"></script>
 </body>
+
 </html>

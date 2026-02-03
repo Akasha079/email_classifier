@@ -6,3 +6,4 @@ torch
 openai
 pydantic
 python-dotenv
+google-generativeai

@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 class EmailRequest(BaseModel):
     text: str
+    llm_provider: str = "openai"
 
 class EmailResponse(BaseModel):
     category: str
