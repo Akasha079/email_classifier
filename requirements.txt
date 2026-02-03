@@ -1,1 +1,8 @@
 # Dependencies
+fastapi
+uvicorn
+transformers
+torch
+openai
+pydantic
+python-dotenv
