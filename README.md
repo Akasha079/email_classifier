@@ -1,134 +1,142 @@
-📧 Intelligent Email Classifier with LLM Explanations
+# 📧 Intelligent Email Classifier with LLM Explanations
 
-An AI-powered email classification system that categorizes emails into Work, Personal, or Spam using transformer-based NLP models and provides human-readable explanations using Large Language Models (LLMs). The system is built with FastAPI and includes a feedback loop for continuous improvement.
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.68%2B-green)
+![OpenAI](https://img.shields.io/badge/AI-OpenAI-orange)
+![License](https://img.shields.io/badge/License-MIT-purple)
 
-🚀 Features
+An AI-powered email classification system that categorizes emails into **Work**, **Personal**, or **Spam** using transformer-based NLP models and provides human-readable explanations using Large Language Models (LLMs). The system is built with **FastAPI** and includes a feedback loop for continuous improvement.
 
-📌 Email classification using HuggingFace Transformer models
+---
 
-🤖 LLM-generated explanations for model predictions (OpenAI GPT)
+## 🚀 Features
 
-⚡ FastAPI-based REST API
+- 📌 **Email Classification**: Uses HuggingFace Transformer models for zero-shot classification.
+- 🤖 **LLM Explanations**: Generates human-readable explanations for predictions using OpenAI/Groq keys.
+- ⚡ **FastAPI Interface**: High-performance REST API.
+- 🔁 **Feedback Loop**: Mechanism to collect user corrections for future retraining.
+- 📊 **Confidence Scores**: Returns confidence levels for each prediction.
+- 🧩 **Modular Design**: Production-ready, organized code structure.
 
-🔁 Feedback mechanism for improving model performance
+## 🧠 Tech Stack
 
-📊 Confidence scores for each prediction
+| Component | Technology | Description |
+|-----------|------------|-------------|
+| **Backend** | API | FastAPI |
+| **NLP** | Model | HuggingFace Transformers (Zero-shot) |
+| **LLM** | Explainer | OpenAI GPT API / Groq |
+| **Language** | Runtime | Python |
+| **Data** | Storage | JSON (Feedback storage) |
 
-🧩 Modular, production-ready code structure
+## 📁 Project Structure
 
-🧠 Tech Stack
-
-Backend: FastAPI
-
-NLP: HuggingFace Transformers (Zero-shot Classification)
-
-LLM: OpenAI GPT API
-
-Language: Python
-
-Data Handling: JSON (feedback storage)
-
-Deployment-ready: Docker-friendly structure
-
-📁 Project Structure
+```bash
 email_classifier/
 │
 ├── app/
-│   ├── main.py            # FastAPI app
-│   ├── classifier.py      # Email classification logic
+│   ├── main.py            # FastAPI app entry point
+│   ├── classifier.py      # Core email classification logic
 │   ├── llm_explainer.py   # GPT-based explanation generator
-│   ├── schemas.py         # Request/response models
-│   └── feedback.py        # Feedback loop logic
+│   ├── schemas.py         # Pydantic models for Request/Response
+│   └── feedback.py        # Feedback loop management
 │
 ├── data/
-│   └── feedback.json      # Stores user corrections
+│   └── feedback.json      # Storage for user corrections
 │
-├── requirements.txt
-└── README.md
+├── requirements.txt       # Project dependencies
+└── README.md              # Project documentation
+```
 
-⚙️ Installation
+## ⚙️ Installation
 
-Clone the repository
-
+### 1. Clone the repository
+```bash
 git clone https://github.com/AkashaMeh/intelligent-email-classifier.git
 cd intelligent-email-classifier
+```
 
-
-Create a virtual environment (optional but recommended)
-
+### 2. Create a virtual environment
+```bash
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
 
-
-Install dependencies
-
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-
-Set OpenAI API Key
-
+### 4. Set OpenAI API Key
+Export your API key as an environment variable:
+```bash
 export OPENAI_API_KEY="your_api_key_here"
+```
 
-▶️ Running the Application
+## ▶️ Running the Application
+
+Start the FastAPI server:
+```bash
 uvicorn app.main:app --reload
+```
 
+The API will be available at:
+- **Docs**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) -- Interactive Swagger UI
+- **Redoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) -- ReDoc documentation
 
-Open API documentation:
+## 📌 API Endpoints
 
-http://127.0.0.1:8000/docs
+### 🔹 Classify Email
+**POST** `/classify`
 
-📌 API Endpoints
-🔹 Classify Email
+Analyzes the email content and returns a category with an explanation.
 
-POST /classify
-
-Request
-
+**Request Body:**
+```json
 {
   "text": "Congratulations! You have won a free voucher."
 }
+```
 
-
-Response
-
+**Response:**
+```json
 {
   "category": "spam",
   "confidence": 0.91,
   "explanation": "The email promotes a reward and urges immediate action, which is common in spam messages."
 }
+```
 
-🔹 Submit Feedback
-
-POST /feedback
+### 🔹 Submit Feedback
+**POST** `/feedback`
 
 Used to store corrected labels for future retraining.
 
-🔁 Feedback Loop
+**Query Parameters:**
+- `email`: The content of the email.
+- `predicted`: The category predicted by the model.
+- `corrected`: The correct category provided by the user.
 
-Users can submit corrections if the predicted category is incorrect.
-This feedback is stored and can later be used to:
+**Example Request:**
+```bash
+POST /feedback?email=Hello&predicted=spam&corrected=personal
+```
 
-Fine-tune supervised models
+## 🔁 Feedback Loop
+Users can submit corrections if the predicted category is incorrect. This feedback is stored in `data/feedback.json` and can be used to:
+- Fine-tune supervised models.
+- Improve prompt engineering.
+- Analyze misclassification patterns.
 
-Improve prompt engineering
+## 🧪 Future Improvements
+- [ ] Fine-tune BERT model for supervised classification.
+- [ ] Database integration (SQLite/PostgreSQL) instead of JSON.
+- [ ] Docker + AWS deployment support.
+- [ ] LangChain-based explanation memory.
+- [ ] Email ingestion via IMAP/SMTP.
 
-Analyze misclassification patterns
+## 👩‍💻 Author
 
-🧪 Future Improvements
+**Akasha Mehmood**
 
-Fine-tuned BERT model for supervised classification
-
-Database integration (SQLite/PostgreSQL)
-
-Docker + AWS deployment
-
-LangChain-based explanation memory
-
-Email ingestion via IMAP/SMTP
-
-👩‍💻 Author
-
-Akasha Mehmood
-📎 GitHub: github.com/AkashaMeh
-
-📎 LinkedIn: linkedin.com/in/akasha-mehmood
+- 📎 **GitHub**: [github.com/AkashaMeh](https://github.com/AkashaMeh)
+- 📎 **LinkedIn**: [linkedin.com/in/akasha-mehmood](https://linkedin.com/in/akasha-mehmood)
